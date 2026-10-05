@@ -25,7 +25,10 @@
   --muted:#a0a0a0;
   --whatsapp:#25D366;
 }
-html { scroll-behavior:smooth; scroll-padding-top:90px; }
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:100px;
+}
 body {
   font-family:'Poppins',sans-serif;
   background:radial-gradient(ellipse at top, #1a1a1a 0%, #0a0a0a 60%);
@@ -44,16 +47,8 @@ button { font-family:inherit; }
 ::-webkit-scrollbar-thumb { background:linear-gradient(#e31e24,#1e4b8f); border-radius:4px; }
 
 /* ============ LAYOUT ============ */
-.container {
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 24px;
-  width:100%;
-}
-.section {
-  padding:110px 0;
-  position:relative;
-}
+.container { max-width:1200px; margin:0 auto; padding:0 24px; width:100%; }
+.section { padding:110px 0; position:relative; }
 .section-title {
   text-align:center;
   margin-bottom:70px;
@@ -79,52 +74,9 @@ button { font-family:inherit; }
   border-radius:3px;
   box-shadow:0 0 20px rgba(227,30,36,0.5);
 }
-.section-title p {
-  color:var(--muted);
-  font-size:0.95rem;
-  letter-spacing:1px;
-  margin-top:12px;
-}
+.section-title p { color:var(--muted); font-size:0.95rem; letter-spacing:1px; margin-top:12px; }
 
-.glow-red {
-  text-shadow:0 0 30px rgba(227,30,36,0.7), 0 0 60px rgba(227,30,36,0.4);
-}
-
-/* ============ BUTTONS ============ */
-.btn {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:14px 32px;
-  border-radius:50px;
-  font-weight:600;
-  font-size:0.9rem;
-  transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
-  cursor:pointer;
-  border:none;
-  white-space:nowrap;
-}
-.btn-red {
-  background:linear-gradient(135deg,#e31e24,#ff4d52);
-  color:#fff;
-  box-shadow:0 8px 25px rgba(227,30,36,0.3);
-}
-.btn-red:hover {
-  transform:translateY(-3px);
-  box-shadow:0 15px 45px rgba(227,30,36,0.6);
-}
-.btn-outline {
-  border:1.5px solid var(--red);
-  color:var(--red);
-  background:rgba(227,30,36,0.05);
-}
-.btn-outline:hover {
-  background:var(--red);
-  color:#fff;
-  box-shadow:0 15px 45px rgba(227,30,36,0.5);
-  transform:translateY(-3px);
-}
+.glow-red { text-shadow:0 0 30px rgba(227,30,36,0.7), 0 0 60px rgba(227,30,36,0.4); }
 
 /* ============ 3D CANVAS ============ */
 #bg-canvas {
@@ -193,22 +145,42 @@ header.scrolled {
   padding:0 24px;
   gap:20px;
 }
+
+/* ============ BRAND ============ */
 .brand {
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:12px;
   flex-shrink:0;
+  text-decoration:none;
 }
-.brand img {
-  height:50px;
-  width:auto;
-  filter:drop-shadow(0 0 12px rgba(227,30,36,0.4));
-  transition:transform 0.3s;
+/* LOGO — Round, no crop */
+.brand-logo {
+  width:52px;
+  height:52px;
+  min-width:52px;
+  min-height:52px;
+  max-width:52px;
+  max-height:52px;
+  border-radius:50%;
+  object-fit:contain;
+  object-position:center;
+  border:2px solid rgba(227,30,36,0.7);
+  box-shadow:0 0 15px rgba(227,30,36,0.5);
+  transition:all 0.4s ease;
+  flex-shrink:0;
+  background:#fff;
+  padding:4px;
+  display:block;
 }
-.brand:hover img { transform:scale(1.05); }
+.brand:hover .brand-logo {
+  transform:scale(1.08) rotate(5deg);
+  box-shadow:0 0 25px rgba(227,30,36,0.8);
+  border-color:var(--red);
+}
 .brand-text {
   font-family:'Playfair Display',serif;
-  font-size:1.35rem;
+  font-size:1.25rem;
   font-weight:900;
   color:#fff;
   letter-spacing:1px;
@@ -218,18 +190,14 @@ header.scrolled {
 .brand-text small {
   display:block;
   font-family:'Poppins',sans-serif;
-  font-size:0.6rem;
+  font-size:0.55rem;
   letter-spacing:4px;
   color:var(--muted);
   font-weight:400;
   margin-top:4px;
 }
 
-nav ul {
-  display:flex;
-  gap:32px;
-  align-items:center;
-}
+nav ul { display:flex; gap:36px; align-items:center; }
 nav a {
   position:relative;
   font-size:0.9rem;
@@ -237,6 +205,7 @@ nav a {
   transition:color 0.3s;
   padding:6px 0;
   font-weight:400;
+  cursor:pointer;
 }
 nav a::after {
   content:'';
@@ -248,22 +217,6 @@ nav a::after {
 }
 nav a:hover { color:var(--red); }
 nav a:hover::after { width:100%; }
-
-.nav-whatsapp {
-  padding:10px 22px !important;
-  background:linear-gradient(135deg,#25D366,#128C7E) !important;
-  color:#fff !important;
-  border-radius:50px !important;
-  font-size:0.85rem !important;
-  font-weight:600 !important;
-  box-shadow:0 5px 20px rgba(37,211,102,0.35);
-  transition:all 0.35s !important;
-}
-.nav-whatsapp::after { display:none !important; }
-.nav-whatsapp:hover {
-  transform:translateY(-2px) !important;
-  box-shadow:0 12px 35px rgba(37,211,102,0.55) !important;
-}
 
 .menu-toggle {
   display:none;
@@ -291,30 +244,9 @@ nav a:hover::after { width:100%; }
   z-index:2;
   max-width:900px;
   width:100%;
-}
-.hero-logo {
-  width:180px;
-  height:auto;
-  margin:0 auto 28px;
-  filter:drop-shadow(0 0 40px rgba(227,30,36,0.5));
-  animation:floatY 6s ease-in-out infinite;
-}
-@keyframes floatY {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-18px); }
-}
-
-.badge {
-  display:inline-block;
-  padding:9px 22px;
-  border:1px solid var(--red);
-  border-radius:50px;
-  color:var(--red);
-  font-size:0.75rem;
-  letter-spacing:3px;
-  margin-bottom:28px;
-  background:rgba(227,30,36,0.05);
-  box-shadow:0 0 30px rgba(227,30,36,0.15);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 .hero h1 {
@@ -324,9 +256,24 @@ nav a:hover::after { width:100%; }
   color:#fff;
   line-height:1;
   letter-spacing:-1px;
-  margin-bottom:24px;
+  margin-bottom:22px;
+  order:1;
 }
 .hero h1 .red { color:var(--red); }
+
+.badge {
+  display:inline-block;
+  padding:9px 22px;
+  border:1px solid var(--red);
+  border-radius:50px;
+  color:var(--red);
+  font-size:0.75rem;
+  letter-spacing:3px;
+  margin-bottom:20px;
+  background:rgba(227,30,36,0.05);
+  box-shadow:0 0 30px rgba(227,30,36,0.15);
+  order:2;
+}
 
 .hero .tagline {
   color:#bbb;
@@ -334,18 +281,14 @@ nav a:hover::after { width:100%; }
   font-size:clamp(0.75rem,1.6vw,1rem);
   margin-bottom:14px;
   font-weight:400;
+  order:3;
+  margin-top:24px;
 }
 .hero .motto {
   color:var(--blue-light);
   font-style:italic;
   font-size:0.95rem;
-  margin-bottom:44px;
-}
-.hero-cta {
-  display:flex;
-  gap:16px;
-  justify-content:center;
-  flex-wrap:wrap;
+  order:4;
 }
 
 .scroll-hint {
@@ -393,13 +336,7 @@ nav a:hover::after { width:100%; }
   font-size:1.6rem;
   margin-bottom:18px;
 }
-.about-box p {
-  color:#bbb;
-  max-width:720px;
-  margin:0 auto;
-  line-height:1.9;
-  font-size:1rem;
-}
+.about-box p { color:#bbb; max-width:720px; margin:0 auto; line-height:1.9; font-size:1rem; }
 
 /* ============ SERVICES ============ */
 .services-grid {
@@ -466,11 +403,7 @@ nav a:hover::after { width:100%; }
   letter-spacing:0.3px;
   line-height:1.4;
 }
-.service-card p {
-  color:var(--muted);
-  font-size:0.85rem;
-  line-height:1.7;
-}
+.service-card p { color:var(--muted); font-size:0.85rem; line-height:1.7; }
 
 /* ============ TEAM ============ */
 .team-grid {
@@ -479,7 +412,7 @@ nav a:hover::after { width:100%; }
   gap:26px;
 }
 .team-card {
-  padding:42px 28px 34px;
+  padding:38px 28px 32px;
   background:linear-gradient(160deg,rgba(20,20,20,0.9),rgba(28,28,28,0.9));
   border:1px solid rgba(46,107,196,0.3);
   border-radius:20px;
@@ -506,56 +439,67 @@ nav a:hover::after { width:100%; }
 }
 .team-card:hover::before { opacity:1; }
 
+/* MEMBER PHOTO — Round, same size as logo */
 .avatar {
-  width:82px;
-  height:82px;
-  margin:0 auto 20px;
+  width:52px;
+  height:52px;
+  min-width:52px;
+  min-height:52px;
+  max-width:52px;
+  max-height:52px;
+  margin:0 auto 16px;
   border-radius:50%;
+  overflow:hidden;
+  border:2px solid rgba(227,30,36,0.7);
+  box-shadow:0 0 15px rgba(227,30,36,0.5);
+  transition:all 0.4s ease;
+  position:relative;
+  flex-shrink:0;
   background:linear-gradient(135deg,var(--red),var(--blue));
   display:flex;
   align-items:center;
   justify-content:center;
   font-family:'Playfair Display',serif;
-  font-size:2rem;
+  font-size:1.4rem;
   font-weight:900;
   color:#fff;
-  box-shadow:0 0 30px rgba(227,30,36,0.35);
-  position:relative;
-  flex-shrink:0;
 }
 .avatar::after {
   content:'';
   position:absolute;
-  inset:-6px;
+  inset:-5px;
   border-radius:50%;
   border:1px dashed rgba(227,30,36,0.4);
   animation:rotate 20s linear infinite;
+  pointer-events:none;
+}
+.avatar img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+.team-card:hover .avatar {
+  transform:scale(1.08) rotate(5deg);
+  box-shadow:0 0 25px rgba(227,30,36,0.8);
+  border-color:var(--red);
 }
 
-.team-card h4 {
-  color:#fff;
-  font-size:1.18rem;
-  font-weight:600;
-  margin-bottom:6px;
-}
+.team-card h4 { color:#fff; font-size:1.15rem; font-weight:600; margin-bottom:5px; }
 .team-card .role {
   color:var(--red);
-  font-size:0.72rem;
+  font-size:0.7rem;
   letter-spacing:2.5px;
   text-transform:uppercase;
-  margin-bottom:24px;
+  margin-bottom:22px;
   font-weight:500;
 }
 
-.team-actions {
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  margin-top:auto;
-}
+.team-actions { display:flex; gap:8px; justify-content:center; margin-top:auto; }
 .team-actions a {
   flex:1;
-  padding:11px 8px;
+  padding:10px 8px;
   border-radius:10px;
   font-size:0.72rem;
   font-weight:600;
@@ -629,12 +573,7 @@ nav a:hover::after { width:100%; }
   margin-bottom:14px;
 }
 .coverage-box p { color:#bbb; margin-bottom:32px; }
-.cities {
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
+.cities { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
 .city {
   padding:14px 34px;
   border:1.5px solid var(--red);
@@ -660,11 +599,7 @@ nav a:hover::after { width:100%; }
   max-width:800px;
   margin:0 auto 30px;
 }
-.contact-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
 .field { position:relative; }
 .field.full { grid-column:1 / -1; }
 .field label {
@@ -697,9 +632,7 @@ nav a:hover::after { width:100%; }
   background:#131313;
 }
 .field input::placeholder,
-.field textarea::placeholder {
-  color:#555;
-}
+.field textarea::placeholder { color:#555; }
 .submit-btn {
   grid-column:1 / -1;
   padding:17px;
@@ -720,6 +653,48 @@ nav a:hover::after { width:100%; }
   box-shadow:0 18px 50px rgba(227,30,36,0.6);
 }
 .submit-btn:active { transform:translateY(-1px); }
+.submit-btn:disabled {
+  opacity:0.6;
+  cursor:not-allowed;
+  transform:none !important;
+}
+
+.form-status {
+  grid-column:1 / -1;
+  text-align:center;
+  font-size:0.9rem;
+  font-weight:500;
+  min-height:24px;
+  padding:0;
+  transition:all 0.4s;
+  opacity:0;
+  transform:translateY(-10px);
+}
+.form-status.show {
+  opacity:1;
+  transform:translateY(0);
+}
+.form-status.success {
+  color:#4ade80;
+  background:rgba(74,222,128,0.08);
+  border:1px solid rgba(74,222,128,0.3);
+  padding:14px 18px;
+  border-radius:10px;
+}
+.form-status.error {
+  color:#f87171;
+  background:rgba(248,113,113,0.08);
+  border:1px solid rgba(248,113,113,0.3);
+  padding:14px 18px;
+  border-radius:10px;
+}
+.form-status.loading {
+  color:#a0a0a0;
+  background:rgba(160,160,160,0.08);
+  border:1px solid rgba(160,160,160,0.3);
+  padding:14px 18px;
+  border-radius:10px;
+}
 
 .legal-box {
   max-width:800px;
@@ -749,47 +724,16 @@ footer {
   gap:12px;
   margin-bottom:18px;
 }
-.footer-brand img { height:45px; }
-.footer-brand .brand-text { font-size:1.2rem; }
+.footer-brand .brand-text {
+  font-size:1.6rem;
+}
 footer .motto {
   color:var(--blue-light);
   font-style:italic;
   font-size:0.9rem;
   margin-bottom:14px;
 }
-footer p {
-  color:#666;
-  font-size:0.78rem;
-  margin:4px 0;
-  letter-spacing:0.5px;
-}
-
-/* ============ WHATSAPP FLOAT ============ */
-.whatsapp-float {
-  position:fixed;
-  bottom:28px;
-  right:28px;
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.7rem;
-  color:#fff;
-  z-index:998;
-  box-shadow:0 10px 30px rgba(37,211,102,0.5);
-  transition:all 0.4s;
-  animation:pulse 2.5s infinite;
-}
-.whatsapp-float:hover {
-  transform:scale(1.12) rotate(6deg);
-}
-@keyframes pulse {
-  0%,100% { box-shadow:0 10px 30px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.5); }
-  50% { box-shadow:0 10px 30px rgba(37,211,102,0.5), 0 0 0 18px rgba(37,211,102,0); }
-}
+footer p { color:#666; font-size:0.78rem; margin:4px 0; letter-spacing:0.5px; }
 
 /* ============ REVEAL ANIMATION ============ */
 .reveal {
@@ -797,10 +741,7 @@ footer p {
   transform:translateY(40px);
   transition:opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1);
 }
-.reveal.visible {
-  opacity:1;
-  transform:translateY(0);
-}
+.reveal.visible { opacity:1; transform:translateY(0); }
 .reveal-delay-1 { transition-delay:0.1s; }
 .reveal-delay-2 { transition-delay:0.2s; }
 .reveal-delay-3 { transition-delay:0.3s; }
@@ -835,29 +776,37 @@ footer p {
   nav ul.open { display:flex; }
   .menu-toggle { display:block; }
 
-  .brand-text { font-size:1.15rem; }
-  .brand img { height:42px; }
+  .brand-text { font-size:1.05rem; }
+  .brand-logo {
+    width:44px;
+    height:44px;
+    min-width:44px;
+    min-height:44px;
+    max-width:44px;
+    max-height:44px;
+  }
 
   .hero { padding:110px 20px 70px; }
-  .hero-logo { width:140px; margin-bottom:20px; }
-  .hero-cta { flex-direction:column; align-items:center; width:100%; }
-  .hero-cta .btn { width:100%; max-width:320px; }
+  .hero h1 { margin-bottom:18px; }
 
   .services-grid { grid-template-columns:1fr; gap:18px; }
   .team-grid { grid-template-columns:1fr; gap:20px; }
   .team-actions { gap:6px; }
   .team-actions a { font-size:0.68rem; padding:10px 6px; }
 
-  .whatsapp-float {
-    width:52px;
-    height:52px;
-    bottom:20px;
-    right:20px;
-    font-size:1.5rem;
+  .avatar {
+    width:46px;
+    height:46px;
+    min-width:46px;
+    min-height:46px;
+    max-width:46px;
+    max-height:46px;
+    font-size:1.2rem;
   }
-  .nav-whatsapp { display:none !important; }
 
   .scroll-hint { display:none; }
+
+  .footer-brand .brand-text { font-size:1.3rem; }
 }
 
 @media (max-width:400px) {
@@ -882,7 +831,7 @@ footer p {
 <header id="header">
   <div class="nav-wrap">
     <a href="#home" class="brand">
-      <img src="logo.png" alt="MANI GULF">
+      <img src="LOGOs2.jpg" alt="MANI GULF" class="brand-logo">
       <div class="brand-text">
         MANI <span class="red">GULF</span>
         <small>EST. 2022</small>
@@ -898,11 +847,6 @@ footer p {
         <li><a href="#services">Services</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li>
-          <a href="https://wa.me/966553451179" target="_blank" class="nav-whatsapp">
-            💬 WhatsApp
-          </a>
-        </li>
       </ul>
     </nav>
   </div>
@@ -911,15 +855,10 @@ footer p {
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-content">
-    <img src="logo.png" alt="MANI GULF" class="hero-logo">
-    <div class="badge">⚡ SINCE 2022</div>
     <h1>MANI <span class="red glow-red">GULF</span></h1>
+    <div class="badge">⚡ SINCE 2022</div>
     <p class="tagline">EQUIPMENT • FABRICATION • LABOUR SUPPLY</p>
     <p class="motto">"Driven by Trust | Powered by Service"</p>
-    <div class="hero-cta">
-      <a href="https://wa.me/966553451179" target="_blank" class="btn btn-red">💬 WhatsApp Us</a>
-      <a href="tel:+966553451179" class="btn btn-outline">📞 Call Now</a>
-    </div>
   </div>
   <div class="scroll-hint">SCROLL<br>▼</div>
 </section>
@@ -1001,34 +940,43 @@ footer p {
     </div>
     <div class="team-grid">
 
+      <!-- Salam Hussain -->
       <div class="team-card reveal">
-        <div class="avatar">S</div>
+        <div class="avatar">
+          <img src="salam.jpeg" alt="Salam Hussain" onerror="this.style.display='none'; this.parentNode.textContent='S';">
+        </div>
         <h4>Salam Hussain</h4>
         <div class="role">Operations Manager</div>
         <div class="team-actions">
-          <a href="https://wa.me/966553451179" target="_blank" class="wa">💬 <span>WhatsApp</span></a>
+          <a href="https://wa.me/966553451179" target="_blank" rel="noopener" class="wa">💬 <span>WhatsApp</span></a>
           <a href="mailto:salamhussain786@gmail.com" class="em">✉️ <span>Email</span></a>
           <a href="tel:+966553451179" class="cl">📞 <span>Call</span></a>
         </div>
       </div>
 
+      <!-- Faruk Ahmed Kazi -->
       <div class="team-card reveal reveal-delay-1">
-        <div class="avatar">F</div>
+        <div class="avatar">
+          <img src="selfi.PNG" alt="Faruk Ahmed Kazi" onerror="this.style.display='none'; this.parentNode.textContent='F';">
+        </div>
         <h4>Faruk Ahmed Kazi</h4>
         <div class="role">Document Controller</div>
         <div class="team-actions">
-          <a href="https://wa.me/966563468307" target="_blank" class="wa">💬 <span>WhatsApp</span></a>
+          <a href="https://wa.me/966563468307" target="_blank" rel="noopener" class="wa">💬 <span>WhatsApp</span></a>
           <a href="mailto:umaremotions@gmail.com" class="em">✉️ <span>Email</span></a>
           <a href="tel:+966563468307" class="cl">📞 <span>Call</span></a>
         </div>
       </div>
 
+      <!-- Samshuddin -->
       <div class="team-card reveal reveal-delay-2">
-        <div class="avatar">S</div>
+        <div class="avatar">
+          <img src="samsu.jpeg" alt="Samshuddin" onerror="this.style.display='none'; this.parentNode.textContent='S';">
+        </div>
         <h4>Samshuddin</h4>
         <div class="role">Sales Coordinator</div>
         <div class="team-actions">
-          <a href="https://wa.me/966545383549" target="_blank" class="wa">💬 <span>WhatsApp</span></a>
+          <a href="https://wa.me/966545383549" target="_blank" rel="noopener" class="wa">💬 <span>WhatsApp</span></a>
           <a href="mailto:mohdsamshu98@gmail.com" class="em">✉️ <span>Email</span></a>
           <a href="tel:+966545383549" class="cl">📞 <span>Call</span></a>
         </div>
@@ -1066,7 +1014,6 @@ footer p {
             action="https://formsubmit.co/umaremotions@gmail.com"
             method="POST">
 
-        <!-- FormSubmit Settings -->
         <input type="hidden" name="_subject" value="New Message from MANI GULF Website">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
@@ -1089,6 +1036,8 @@ footer p {
         </div>
 
         <button type="submit" class="submit-btn">Send Message →</button>
+
+        <div id="formStatus" class="form-status"></div>
       </form>
     </div>
 
@@ -1101,7 +1050,6 @@ footer p {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <img src="logo.png" alt="MANI GULF">
     <div class="brand-text">
       MANI <span class="red">GULF</span>
       <small>EST. 2022</small>
@@ -1111,9 +1059,6 @@ footer p {
   <p>© 2022–2026 MANI GULF. All rights reserved.</p>
   <p>C.R. 2060053889 &nbsp;|&nbsp; VAT 312443303700003</p>
 </footer>
-
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/966553451179" target="_blank" class="whatsapp-float" aria-label="WhatsApp">💬</a>
 
 <!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -1248,8 +1193,20 @@ window.addEventListener('scroll', () => {
 const menuToggle = document.getElementById('menuToggle');
 const navList = document.getElementById('navList');
 menuToggle.addEventListener('click', () => navList.classList.toggle('open'));
-navList.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => navList.classList.remove('open'));
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#' || targetId.length < 2) return;
+    const target = document.querySelector(targetId);
+    if (target) {
+      e.preventDefault();
+      const headerHeight = header.offsetHeight;
+      const targetPosition = target.offsetTop - headerHeight - 20;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      navList.classList.remove('open');
+    }
+  });
 });
 
 const io = new IntersectionObserver((entries) => {
@@ -1269,11 +1226,54 @@ document.querySelectorAll('.service-card').forEach(card => {
     card.style.setProperty('--my', `${e.clientY - r.top}px`);
   });
 });
-</script>
 
-<!-- ============ MIKA AI CHATBOT ============ -->
-<!-- IMPORTANT: Replace pk_your_key_here with your actual Mika public key -->
-<script src="https://api.hiremika.com/v1/embed.js?v=3" data-key="pk_your_key_here" async></script>
+// ============ CONTACT FORM (AJAX — No Redirect) ============
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formStatus.textContent = 'Please wait, sending your message...';
+    formStatus.className = 'form-status show loading';
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formStatus.textContent = '✅ Thank you! Your message has been sent. We will contact you soon.';
+        formStatus.className = 'form-status show success';
+        contactForm.reset();
+
+        setTimeout(() => {
+          formStatus.className = 'form-status';
+          formStatus.textContent = '';
+        }, 8000);
+      } else {
+        throw new Error('Failed');
+      }
+    } catch (error) {
+      formStatus.textContent = '❌ Something went wrong. Please try WhatsApp or call us directly.';
+      formStatus.className = 'form-status show error';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+}
+</script>
 
 </body>
 </html>
